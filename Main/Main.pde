@@ -1,5 +1,6 @@
 final static float moveSpeed = 5;
 boolean menu = true;
+boolean instruc = false;
 
 BackGround p;
 Sprite player;
@@ -60,11 +61,30 @@ void mousePressed(){
       menu = false;
     }
     
-    else if (menu == true && mouseX > 62 && mouseX < 264 & mouseY > 518 && mouseY < 578){       //instuctions
-      
+  else if (menu == true && mouseX > 62 && mouseX < 264 & mouseY > 518 && mouseY < 578){       //instuctions
+      background(255);
+      p = new BackGround("data/instruction.png");
+      instruc = true;
+      menu = false;
     }
     
-    else if (menu == true && mouseX > 558 && mouseX < 617 & mouseY > 516 && mouseY < 576){      //quit
+  else if (menu == true && mouseX > 558 && mouseX < 617 & mouseY > 516 && mouseY < 576){      //quit
       exit();
     } 
+
+  if (instruc == true && mouseX > 75 && mouseX < 133 & mouseY > 518 && mouseY < 570){      //main game
+        background(255);
+        p = new BackGround("data/MainMenu.png");
+        menu = true;
+      }
+  
+  else if (instruc == true && mouseX > 560 && mouseX < 617 & mouseY > 515 && mouseY < 573){      //quit
+        exit();
+      } 
+
+System.out.println("X: " + mouseX);
+System.out.println("Y: " + mouseY);
+
+
+
 }
