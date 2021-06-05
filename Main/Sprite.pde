@@ -12,6 +12,15 @@ public class Sprite{
     speedY = 0;
    }
    
+   public Sprite(PImage tile){
+    sp = tile;
+    centerX = 0;
+    centerY = 0;
+    speedX = 0;
+    speedY = 0; 
+   }
+   
+   
   public Sprite(String fileName){
    this(fileName, 0, 0); 
   }

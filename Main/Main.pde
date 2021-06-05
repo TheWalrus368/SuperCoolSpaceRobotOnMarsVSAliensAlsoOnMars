@@ -2,13 +2,24 @@ final static float moveSpeed = 5;
 boolean menu = true;
 boolean instruc = false;
 
+PImage brick, ground;
+
 BackGround p;
 Sprite player;
+Tiles map;
+
+ArrayList <Sprite> platforms;
 
 void setup(){
   size(700, 599);
   p = new BackGround("data/MainMenu.png");
   player = new Sprite("data/Robo.png", 100, 200);
+  map = new Tiles();
+  
+  platforms = new ArrayList<Sprite>();
+  
+  brick = loadImage("data/brick.png");
+  ground = loadImage("data/ground.png");
   
   player.speedX = 0;
   player.speedY = 0;
@@ -20,6 +31,10 @@ void draw(){
   if (menu == false){
     player.display();
     player.move();
+  }
+  
+  for (Sprite tile: platforms){
+    tile.display();
   }
   
 }
@@ -56,8 +71,10 @@ if(keyCode == RIGHT){
 void mousePressed(){
  if (menu == true && mouseX > 231 && mouseX < 466 & mouseY > 242 && mouseY < 349){      //main game
       background(255);
-      p = new BackGround("data/background.png");
+      p = new BackGround("data/background.jpg");
       player.display();
+      map.createPlatforms("data/map.csv");
+      
       menu = false;
     }
     
@@ -81,10 +98,5 @@ void mousePressed(){
   else if (instruc == true && mouseX > 560 && mouseX < 617 & mouseY > 515 && mouseY < 573){      //quit
         exit();
       } 
-
-System.out.println("X: " + mouseX);
-System.out.println("Y: " + mouseY);
-
-
 
 }
