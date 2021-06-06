@@ -1,4 +1,6 @@
 final static float moveSpeed = 5;
+final static float gravity = 0.6;
+
 boolean menu = true;
 boolean instruc = false;
 
@@ -12,6 +14,7 @@ ArrayList <Sprite> platforms;
 
 void setup(){
   size(700, 599);
+  imageMode(CENTER);
   p = new BackGround("data/MainMenu.png");
   player = new Sprite("data/Robo.png", 100, 200);
   map = new Tiles();
@@ -21,8 +24,8 @@ void setup(){
   brick = loadImage("data/brick.png");
   ground = loadImage("data/ground.png");
   
-  player.speedX = 0;
-  player.speedY = 0;
+  player.change_x = 0;
+  player.change_y = 0;
 }  
 
 void draw(){
@@ -30,41 +33,42 @@ void draw(){
   p.current();
   if (menu == false && instruc == false){
     player.display();
-    player.move();
-  }
-  
-  for (Sprite tile: platforms){
+    player.resolvePlatformCollisions(player, platforms);
+    
+    for (Sprite tile: platforms){
     tile.display();
   }
+ }
   
 }
+
 void keyPressed(){
  if(keyCode == RIGHT){
-  player.speedX = moveSpeed;
+  player.change_x = moveSpeed;
  }
  else if(keyCode == LEFT){
-  player.speedX = -moveSpeed;
+  player.change_x = -moveSpeed;
  }
  else if (keyCode == DOWN){
-  player.speedY = moveSpeed;
+  player.change_y = moveSpeed;
  }
  else if (keyCode == UP){
-  player.speedY = -moveSpeed;
+  player.change_y = -moveSpeed;
  }
 }
 
 void keyReleased(){
 if(keyCode == RIGHT){
-  player.speedX = 0; 
+  player.change_x = 0; 
  }
  else if(keyCode == LEFT){
-  player.speedX = 0;
+  player.change_x = 0;
  }
  else if (keyCode == DOWN){
-  player.speedY = 0;
+  player.change_y = 0;
  }
  else if (keyCode == UP){
-  player.speedY = 0; 
+  player.change_y = 0; 
  }
 }
 

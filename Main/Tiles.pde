@@ -9,14 +9,14 @@ public class Tiles{
        for (int col = 0; col < values.length; col++){
            if (values[col].equals("1")){
               Sprite tile = new Sprite(ground);
-              tile.centerX = spriteSize/2 + col * spriteSize - 25;
-              tile.centerY = spriteSize/2 + row * spriteSize - 25;
+              tile.center_x = spriteSize/2 + col * spriteSize;
+              tile.center_y = spriteSize/2 + row * spriteSize;
               platforms.add(tile);
            }
            if (values[col].equals("2")){
               Sprite tile = new Sprite(brick);
-              tile.centerX = spriteSize/2 + col * spriteSize - 25;
-              tile.centerY = spriteSize/2 + row * spriteSize - 25;
+              tile.center_x = spriteSize/2 + col * spriteSize;
+              tile.center_y = spriteSize/2 + row * spriteSize;
               platforms.add(tile);
            }
        }

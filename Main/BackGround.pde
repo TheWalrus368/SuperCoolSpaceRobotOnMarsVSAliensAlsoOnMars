@@ -4,10 +4,10 @@ public class BackGround{
   
   public BackGround(String fileName){
      bg = loadImage(fileName);
-     image(bg, 0, 0);
+     image(bg, 350, 299.5);
   }
   
   public void current(){
-    image(bg, 0, 0);
+    image(bg, 350, 299.5);
   }
 }
