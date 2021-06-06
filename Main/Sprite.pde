@@ -1,37 +1,61 @@
+
 public class Sprite{
-   PImage sp;
-   float centerX, centerY;
-   float speedX, speedY;
-   float w, h;
-   
-   public Sprite(String fileName, float x, float y){
-    sp = loadImage(fileName);
-    centerX = x;
-    centerY = y;
-    speedX = 0;
-    speedY = 0;
-   }
-   
-   public Sprite(PImage tile){
-    sp = tile;
-    centerX = 0;
-    centerY = 0;
-    speedX = 0;
-    speedY = 0; 
-   }
-   
-   
-  public Sprite(String fileName){
-   this(fileName, 0, 0); 
-  }
+  PImage image;
+  float center_x, center_y;
+  float speed_x, speed_y;
+  float w, h;
   
+  public Sprite(String filename, float scale, float x, float y){
+    image = loadImage(filename);
+    w = image.width * scale;
+    h = image.height * scale;
+    center_x = x;
+    center_y = y;
+    speed_x = 0;
+    speed_y = 0;
+  }
+  public Sprite(String filename, float scale){
+    this(filename, scale, 0, 0);
+  }
+  public Sprite(PImage img, float scale){
+    image = img;
+    w = image.width * scale;
+    h = image.height * scale;
+    center_x = 0;
+    center_y = 0;
+    speed_x = 0;
+    speed_y = 0;
+  }
   public void display(){
-   image (sp, centerX, centerY); 
+     image(image, center_x, center_y, w, h); 
   }
-  
   public void move(){
-   centerX += speedX;
-   centerY += speedY;
+     center_x += speed_x;
+     center_y += speed_y;
   }
   
+  void setLeft(float left){
+    center_x = left + w/2;
+  }
+  float getLeft(){
+    return center_x - w/2;
+  }
+  void setRight(float right){
+    center_x = right - w/2;
+  }
+  float getRight(){
+    return center_x + w/2;
+  }
+  void setTop(float top){
+    center_y = top + h/2;
+  }
+  float getTop(){
+    return center_y - h/2;
+  }
+  void setBottom(float bottom){
+    center_y = bottom - h/2;
+  }
+  float getBottom(){
+    return center_y + h/2;
+  }
 }
