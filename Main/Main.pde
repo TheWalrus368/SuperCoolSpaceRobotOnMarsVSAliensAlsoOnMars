@@ -2,6 +2,15 @@ final static float moveSpeed = 5;
 final static float gravity = 0.6;
 final static float jump_height = 10;
 
+final static float rightmargin = 400;
+final static float leftmargin = 60;
+final static float verticalmargin = 40;
+float leftboundary, rightboundary;
+float topboundary, bottomboundary;
+float viewx = 0;
+float viewy = 0;
+
+
 boolean menu = true;
 boolean instruc = false;
 
@@ -27,18 +36,24 @@ void setup(){
   
   player.change_x = 0;
   player.change_y = 0;
+  
 }  
 
 void draw(){
   background(255);
   p.current();
+  scroll();
   if (menu == false && instruc == false){
-    player.display();
+    
     player.resolvePlatformCollisions(player, platforms);
     
     for (Sprite tile: platforms){
     tile.display();
-  }
+    }
+    player.display();
+    System.out.println(viewx);
+    System.out.println(viewy);
+
  }
   
 }
@@ -95,5 +110,24 @@ void mousePressed(){
   else if (instruc == true && mouseX > 560 && mouseX < 617 & mouseY > 515 && mouseY < 573){      //quit
         exit();
       } 
+}
 
+void scroll(){
+  float rightboundary=viewx+ width - rightmargin;
+  if (player.getRight() > rightboundary){
+    viewx += player.getRight() - rightboundary;
+  }
+  float leftboundary= viewx + leftmargin;
+  if (player.getLeft() < leftboundary){
+    viewx -= leftboundary - player.getLeft();
+  }
+  float bottomboundary = viewy + height - verticalmargin;
+  if (player.getBottom() > bottomboundary){
+    viewy += player.getBottom() - bottomboundary;
+  }  
+  float topboundary = viewy + verticalmargin;
+  if (player.getTop() < topboundary){
+    viewy -= topboundary - player.getTop();
+  } 
+  translate(-viewx, -viewy);
 }
