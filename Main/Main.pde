@@ -1,5 +1,6 @@
 final static float moveSpeed = 5;
 final static float gravity = 0.6;
+final static float jump_height = 10;
 
 boolean menu = true;
 boolean instruc = false;
@@ -43,32 +44,23 @@ void draw(){
 }
 
 void keyPressed(){
- if(keyCode == RIGHT){
+ if(key == 'd'){
   player.change_x = moveSpeed;
  }
- else if(keyCode == LEFT){
+ else if(key == 'a'){
   player.change_x = -moveSpeed;
  }
- else if (keyCode == DOWN){
-  player.change_y = moveSpeed;
- }
- else if (keyCode == UP){
-  player.change_y = -moveSpeed;
+ else if (key == ' ' && player.isOnPlatforms(player, platforms)){
+  player.change_y = -jump_height;
  }
 }
 
 void keyReleased(){
-if(keyCode == RIGHT){
+if(key == 'd'){
   player.change_x = 0; 
  }
- else if(keyCode == LEFT){
+ else if(key == 'a'){
   player.change_x = 0;
- }
- else if (keyCode == DOWN){
-  player.change_y = 0;
- }
- else if (keyCode == UP){
-  player.change_y = 0; 
  }
 }
 

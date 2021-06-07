@@ -117,5 +117,18 @@ public class Sprite{
     }
   }
     
+    
+    public boolean isOnPlatforms(Sprite s, ArrayList<Sprite> walls){
+      s.center_y += 5;
+      ArrayList<Sprite> col_list = checkCollisionList(s, walls);
+      s.center_y += -5;
+      if (col_list.size() > 0){
+        return true;
+      }
+      else {
+       return false; 
+      }
+    }
+    
 }
   
