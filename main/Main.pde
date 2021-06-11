@@ -19,8 +19,10 @@ boolean menu;
 boolean instruc;
 boolean isGameOver;
 
-PImage brick, ground, alien, rocket, pImg;
+PImage brick, ground, alien, rocket, pImg, winScreen, lossScreen;
 BackGround p;
+BackGround win;
+BackGround loss;
 Sprite threeHearts, twoHearts, oneHeart;
 Tiles map;
 Enemy enemy;
@@ -38,7 +40,7 @@ void setup(){
   isGameOver = false;
   
   lives = 3;
-  level =1 ;
+  level = 1;
 
   p = new BackGround("data/MainMenu.png");
   
@@ -62,9 +64,9 @@ void setup(){
 }  
 
 void draw(){
-  background(255);
-  p.current();
-  if (menu == false && instruc == false && isGameOver == false && level==1){
+  if (menu == false && instruc == false && isGameOver == false){
+    background(255);
+    p.current();
     System.out.println(level);
     scroll();
     player.display();
@@ -75,6 +77,7 @@ void draw(){
     for (Sprite tile: rocketship){
       tile.display();
     }
+    
     for (Sprite tile: platforms){
       tile.display();
     }
@@ -97,6 +100,13 @@ void draw(){
       oneHeart.display();
     }
  }
+
+  if (level == 5){
+    win = new BackGround("data/winScreen.png");
+  }
+  if (lives == 0){
+    loss = new BackGround("data/lossScreen.png");
+  }
   
 }
 
@@ -130,8 +140,8 @@ void mousePressed(){
       background(255);
       p = new BackGround("data/background.jpg");
       player.display();
-      map.createPlatforms("data/level3.csv");
-      
+      level = 4;
+      map.createPlatforms("data/level1.csv");
       menu = false;
     }
     

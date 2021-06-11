@@ -81,6 +81,33 @@ public class Sprite{
       boolean collidedRocket = checkRocketCollision(player, rocketship);
       if (collidedRocket){
         level += 1;
+        lives = 3;
+        player.center_x = 150;
+        player.center_y = 500;
+        if (level == 2){
+          platforms = new ArrayList<Sprite>();
+          enemies = new ArrayList<Enemy>();
+          rocketship = new ArrayList<Sprite>();
+          map.createPlatforms("data/level2.csv");
+        }
+        else if (level == 3){
+          platforms = new ArrayList<Sprite>();
+          enemies = new ArrayList<Enemy>();
+          rocketship = new ArrayList<Sprite>();
+          map.createPlatforms("data/level3.csv");
+        }
+        else if (level == 4){
+          platforms = new ArrayList<Sprite>();
+          enemies = new ArrayList<Enemy>();
+          rocketship = new ArrayList<Sprite>();
+          map.createPlatforms("data/level4.csv");
+        }
+        else if (level == 5){
+          isGameOver = true;
+          platforms = new ArrayList<Sprite>();
+          enemies = new ArrayList<Enemy>();
+          rocketship = new ArrayList<Sprite>();
+        }
       }
       
     }  
@@ -171,6 +198,7 @@ public class Sprite{
          view_x = 0;
          view_y = 0;
          isGameOver = true;
+
        }        
         else {
          player.center_x = 150;
