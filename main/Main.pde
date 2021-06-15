@@ -1,5 +1,5 @@
 final static float moveSpeed = 5;
-final static float gravity = 0.6;
+final static float gravity = 0.5;
 final static float jump_height = 10;
 final static float ground_level = 600;
 
@@ -20,13 +20,15 @@ boolean instruc;
 boolean isGameOver;
 
 PImage brick, ground, alien, rocket, pImg, winScreen, lossScreen;
-BackGround p;
+
+BackGround bg;
 BackGround win;
 BackGround loss;
 Sprite threeHearts, twoHearts, oneHeart;
 Tiles map;
 Enemy enemy;
 Player player;
+
 ArrayList <Sprite> platforms;
 ArrayList<Enemy> enemies; 
 ArrayList<Sprite> rocketship; 
@@ -34,15 +36,14 @@ ArrayList<Sprite> rocketship;
 void setup(){
   size(700, 599);
   imageMode(CENTER);
-  
+    
+  lives = 3;
+  level = 1;
   menu = true;
   instruc = false;
   isGameOver = false;
-  
-  lives = 3;
-  level = 1;
 
-  p = new BackGround("data/MainMenu.png");
+  bg= new BackGround("data/MainMenu.png");
   
   pImg = loadImage("data/Robostanding-removebg-preview.png");
   player = new Player(pImg);
@@ -66,8 +67,7 @@ void setup(){
 void draw(){
   if (menu == false && instruc == false && isGameOver == false){
     background(255);
-    p.current();
-    System.out.println(level);
+    bg.current();
     scroll();
     player.display();
     player.updateAnimation();
@@ -138,16 +138,15 @@ if(key == 'd'){
 void mousePressed(){
  if (menu == true && mouseX > 231 && mouseX < 466 & mouseY > 242 && mouseY < 349){      //main game
       background(255);
-      p = new BackGround("data/background.jpg");
+      bg= new BackGround("data/background.jpg");
       player.display();
-      level = 4;
       map.createPlatforms("data/level1.csv");
       menu = false;
     }
     
   else if (menu == true && mouseX > 62 && mouseX < 264 & mouseY > 518 && mouseY < 578){       //instuctions
       background(255);
-      p = new BackGround("data/instruction.png");
+      bg= new BackGround("data/instruction.png");
       instruc = true;
       menu = false;
     }
@@ -158,7 +157,7 @@ void mousePressed(){
 
   if (instruc == true && mouseX > 75 && mouseX < 133 & mouseY > 518 && mouseY < 570){      //main game
         background(255);
-        p = new BackGround("data/MainMenu.png");
+        bg= new BackGround("data/MainMenu.png");
         menu = true;
         instruc = false;
       }
