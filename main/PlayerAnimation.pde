@@ -1,4 +1,5 @@
 public class Player extends AnimatedSprite{
+//define variables/arrays
   boolean inPlace,onPlatform;
   PImage[] standLeft;
   PImage[] standRight;
@@ -6,6 +7,8 @@ public class Player extends AnimatedSprite{
   PImage[] jumpRight;
   PImage[] runLeft;
   PImage[] runRight;
+  
+//method to initialize all arrays and variables like constructor  
   public Player(PImage sp){
     super(sp);
     direction = RIGHT_FACING;
@@ -25,12 +28,18 @@ public class Player extends AnimatedSprite{
     jumpLeft = new PImage[1];
     jumpLeft[0] = loadImage("data/robojumpleft-removebg-preview.png");
   }
+
+//Overloading/overiding methods used in the super class AnimatedSprite for player animation specifically
+
+//checks to see is the player is on the platforms and checks to see if they are in place then it will be called to the super class for the updateAnimation method
   @Override
   public void updateAnimation(){
     onPlatform = isOnPlatforms(this, platforms);
     inPlace= change_x ==0 && change_y ==0;
     super.updateAnimation();
   }
+  
+//override the other selectDirection to check which direction the sprite is facing
   @Override
   public void selectDirection(){
     if(change_x > 0)
@@ -38,6 +47,8 @@ public class Player extends AnimatedSprite{
     else if(change_x < 0)
       direction = LEFT_FACING;    
   }
+  
+//  based on the orientation of the player sprite the specific animation array will be selected
   @Override
   public void selectCurrentImages(){
     if(direction == RIGHT_FACING){
