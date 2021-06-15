@@ -76,4 +76,3 @@ public class Player extends AnimatedSprite{
    }
 
 }
-  

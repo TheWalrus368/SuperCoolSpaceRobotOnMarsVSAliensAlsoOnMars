@@ -1,4 +1,14 @@
-final static float moveSpeed = 5;
+/****************************************************************************************************************/
+/*                                                                                                              */
+/*                      SUPER COOL SPACE ROBOT ON SPACE ON MARS VS ALIENS ALSO ON MARS                          */
+/*                                                                                                              */
+/*                      @authors Darren Wallace and Mathewos Kagnew                                             */
+/*                                                                                                              */
+/*   You will have to complete 4 levels while defeating the aliens on each level to reach the end and win!      */
+/*   Use the arrow keys to move and the spacebar to jump.                                                       */
+/*****************************************************************************************************************/
+
+final static float moveSpeed = 5;                      //global variable declaration 
 final static float gravity = 0.5;
 final static float jump_height = 10;
 final static float ground_level = 600;
@@ -21,7 +31,7 @@ boolean isGameOver;
 
 PImage brick, ground, alien, rocket, pImg, winScreen, lossScreen;
 
-BackGround bg;
+BackGround bg;                                                          //creating objects
 BackGround win;
 BackGround loss;
 Sprite threeHearts, twoHearts, oneHeart;
@@ -33,11 +43,11 @@ ArrayList <Sprite> platforms;
 ArrayList<Enemy> enemies; 
 ArrayList<Sprite> rocketship; 
 
-void setup(){
+void setup(){                                      //initalize method that runs once at the beginning of the program and once when called
   size(700, 599);
   imageMode(CENTER);
     
-  lives = 3;
+  lives = 3;                                      
   level = 1;
   menu = true;
   instruc = false;
@@ -45,7 +55,7 @@ void setup(){
 
   bg= new BackGround("data/MainMenu.png");
   
-  pImg = loadImage("data/Robostanding-removebg-preview.png");
+  pImg = loadImage("data/Robostanding-removebg-preview.png");            
   player = new Player(pImg);
   player.center_x=150;
   player.center_y=500;
@@ -64,7 +74,7 @@ void setup(){
   player.change_y = 0;
 }  
 
-void draw(){
+void draw(){                                                                        //this is the main code that is constantly running
   if (menu == false && instruc == false && isGameOver == false){
     background(255);
     bg.current();
@@ -111,11 +121,11 @@ void draw(){
 }
 
 
-void keyPressed(){
- if(key == 'd'){
+void keyPressed(){                                                //this method is run when a key is pressed
+ if(keyCode == RIGHT){                                                //it checks which one is pressed and does the contents of the if statement, if none are pressed it does nothing
   player.change_x = moveSpeed;
  }
- else if(key == 'a'){
+ else if(keyCode == LEFT){
   player.change_x = -moveSpeed;
  }
  else if (key == ' ' && player.isOnPlatforms(player, platforms)){
@@ -126,17 +136,17 @@ void keyPressed(){
  }
 }
 
-void keyReleased(){
-if(key == 'd'){
+void keyReleased(){                                            //this method is run when a key is released
+if(keyCode == RIGHT){
   player.change_x = 0; 
  }
- else if(key == 'a'){
+ else if(keyCode == LEFT){
   player.change_x = 0;
  }
 }
 
 void mousePressed(){
- if (menu == true && mouseX > 231 && mouseX < 466 & mouseY > 242 && mouseY < 349){      //main game
+ if (menu == true && mouseX > 231 && mouseX < 466 & mouseY > 242 && mouseY < 349){      //main game button on the menu
       background(255);
       bg= new BackGround("data/background.jpg");
       player.display();
@@ -144,30 +154,30 @@ void mousePressed(){
       menu = false;
     }
     
-  else if (menu == true && mouseX > 62 && mouseX < 264 & mouseY > 518 && mouseY < 578){       //instuctions
+  else if (menu == true && mouseX > 62 && mouseX < 264 & mouseY > 518 && mouseY < 578){       //instuctions button on the menu
       background(255);
       bg= new BackGround("data/instruction.png");
       instruc = true;
       menu = false;
     }
     
-  else if (menu == true && mouseX > 558 && mouseX < 617 & mouseY > 516 && mouseY < 576){      //quit
+  else if (menu == true && mouseX > 558 && mouseX < 617 & mouseY > 516 && mouseY < 576){      //quit button on the menu
       exit();
     } 
 
-  if (instruc == true && mouseX > 75 && mouseX < 133 & mouseY > 518 && mouseY < 570){      //main game
+  if (instruc == true && mouseX > 75 && mouseX < 133 & mouseY > 518 && mouseY < 570){      //main menu button on the instruction screen
         background(255);
         bg= new BackGround("data/MainMenu.png");
         menu = true;
         instruc = false;
       }
   
-  else if (instruc == true && mouseX > 560 && mouseX < 617 & mouseY > 515 && mouseY < 573){      //quit
+  else if (instruc == true && mouseX > 560 && mouseX < 617 & mouseY > 515 && mouseY < 573){      //quit button on the instruction screen
         exit();
       } 
 }
 
-public void scroll(){
+public void scroll(){                                            //this method scrolls the player view with the player around the map
   float right_boundary = view_x + width - right_margin;
   if (player.getRight() > right_boundary){
     view_x += player.getRight() - right_boundary;

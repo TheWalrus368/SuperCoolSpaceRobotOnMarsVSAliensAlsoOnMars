@@ -1,5 +1,8 @@
 public class Enemy extends AnimatedSprite{
+//define variables
   float boundaryLeft, boundaryRight;
+  
+//initalize all the varaibles and arrays for the enemy sprites  
   public Enemy(PImage spr, float bLeft, float bRight){
     super(spr);
     moveLeft = new PImage[2];
@@ -14,7 +17,7 @@ public class Enemy extends AnimatedSprite{
     boundaryRight = bRight;
     change_x = 2;
   }
-  
+ // sets trhe boundaries that the enemy sprite can move and also moves by calling the sprite class
   void update(){
     // call update of Sprite(super)
     super.move();
